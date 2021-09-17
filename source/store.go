@@ -54,7 +54,7 @@ type Config struct {
 	AlwaysPublishNotReadyAddresses bool
 	ConnectorServer                string
 	CRDSourceAPIVersion            string
-	CRDSourceKind                  string
+	CRDSourceResource              string
 	KubeConfig                     string
 	APIServerURL                   string
 	ServiceTypeFilter              []string
@@ -259,15 +259,11 @@ func BuildWithConfig(source string, p ClientGenerator, cfg *Config) (Source, err
 	case "connector":
 		return NewConnectorSource(cfg.ConnectorServer)
 	case "crd":
-		client, err := p.KubeClient()
+		dynamicClient, err := p.DynamicKubernetesClient()
 		if err != nil {
 			return nil, err
 		}
-		crdClient, scheme, err := NewCRDClientForAPIVersionKind(client, cfg.KubeConfig, cfg.APIServerURL, cfg.CRDSourceAPIVersion, cfg.CRDSourceKind)
-		if err != nil {
-			return nil, err
-		}
-		return NewCRDSource(crdClient, cfg.Namespace, cfg.CRDSourceKind, cfg.AnnotationFilter, cfg.LabelFilter, scheme)
+		return NewCRDSource(dynamicClient, cfg.Namespace, cfg.CRDSourceAPIVersion, cfg.CRDSourceResource, cfg.AnnotationFilter, cfg.LabelFilter)
 	case "skipper-routegroup":
 		apiServerURL := cfg.APIServerURL
 		tokenPath := ""

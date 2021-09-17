@@ -68,11 +68,11 @@ Refer to [kubebuilder](https://github.com/kubernetes-sigs/kubebuilder) to create
 
 ### Usage
 
-One can use CRD source by specifying `--source` flag with `crd` and specifying the ApiVersion and Kind of the CRD with `--crd-source-apiversion` and `crd-source-kind` respectively.
+One can use CRD source by specifying `--source` flag with `crd` and specifying the ApiVersion and Kind of the CRD with `--crd-source-apiversion` and `crd-source-resource` respectively.
 for e.g:
 
 ```
-$ build/external-dns --source crd --crd-source-apiversion externaldns.k8s.io/v1alpha1  --crd-source-kind DNSEndpoint --provider inmemory --once --dry-run
+$ build/external-dns --source crd --crd-source-apiversion externaldns.k8s.io/v1alpha1 --crd-source-resource dnsendpoints --provider inmemory --once --dry-run
 ```
 
 ### Creating DNS Records
@@ -99,7 +99,7 @@ dnsendpoint.externaldns.k8s.io "examplednsrecord" created
 Run external-dns in dry-mode to see whether external-dns picks up the DNS record from CRD.
 
 ```
-$ build/external-dns --source crd --crd-source-apiversion externaldns.k8s.io/v1alpha1  --crd-source-kind DNSEndpoint --provider inmemory --once --dry-run
+$ build/external-dns --source crd --crd-source-apiversion externaldns.k8s.io/v1alpha1 --crd-source-resource dnsendpoints --provider inmemory --once --dry-run
 INFO[0000] running in dry-run mode. No changes to DNS records will be made.
 INFO[0000] Connected to cluster at https://192.168.99.100:8443
 INFO[0000] CREATE: foo.bar.com 180 IN A 192.168.99.216
