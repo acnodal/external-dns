@@ -202,7 +202,8 @@ func testOcpRouteSourceEndpoints(t *testing.T) {
 			ocpRouterName: "",
 			expected: []*endpoint.Endpoint{
 				{
-					DNSName: "my-domain.com",
+					DNSName:    "my-domain.com",
+					RecordType: endpoint.RecordTypeCNAME,
 					Targets: []string{
 						"apps.my-domain.com",
 					},
@@ -237,7 +238,8 @@ func testOcpRouteSourceEndpoints(t *testing.T) {
 			ocpRouterName: "default",
 			expected: []*endpoint.Endpoint{
 				{
-					DNSName: "my-domain.com",
+					DNSName:    "my-domain.com",
+					RecordType: endpoint.RecordTypeCNAME,
 					Targets: []string{
 						"router-default.my-domain.com",
 					},
@@ -276,7 +278,8 @@ func testOcpRouteSourceEndpoints(t *testing.T) {
 			ocpRouterName: "default",
 			expected: []*endpoint.Endpoint{
 				{
-					DNSName: "my-domain.com",
+					DNSName:    "my-domain.com",
+					RecordType: endpoint.RecordTypeCNAME,
 					Targets: []string{
 						"router-default.my-domain.com",
 					},
@@ -315,7 +318,8 @@ func testOcpRouteSourceEndpoints(t *testing.T) {
 			ocpRouterName: "default",
 			expected: []*endpoint.Endpoint{
 				{
-					DNSName: "my-domain.com",
+					DNSName:    "my-domain.com",
+					RecordType: endpoint.RecordTypeCNAME,
 					Targets: []string{
 						"router-default.my-domain.com",
 					},
@@ -363,7 +367,8 @@ func testOcpRouteSourceEndpoints(t *testing.T) {
 			ocpRouterName: "",
 			expected: []*endpoint.Endpoint{
 				{
-					DNSName: "my-annotation-domain.com",
+					DNSName:    "my-annotation-domain.com",
+					RecordType: endpoint.RecordTypeCNAME,
 					Targets: []string{
 						"my.site.foo.com",
 					},
@@ -395,7 +400,8 @@ func testOcpRouteSourceEndpoints(t *testing.T) {
 			ocpRouterName: "",
 			expected: []*endpoint.Endpoint{
 				{
-					DNSName: "my-annotation-domain.com",
+					DNSName:    "my-annotation-domain.com",
+					RecordType: endpoint.RecordTypeCNAME,
 					Targets: []string{
 						"my.site.foo.com",
 					},
